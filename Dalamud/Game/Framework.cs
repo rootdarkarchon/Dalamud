@@ -77,11 +77,6 @@ internal sealed class Framework : IDisposable, IServiceType, IFramework
     public event IFramework.OnUpdateDelegate? Update;
 
     /// <summary>
-    /// Executes during FrameworkUpdate before all <see cref="Update"/> delegates.
-    /// </summary>
-    internal event IFramework.OnUpdateDelegate BeforeUpdate;
-
-    /// <summary>
     /// Gets or sets a value indicating whether the collection of stats is enabled.
     /// </summary>
     public static bool StatsEnabled { get; set; }
@@ -357,8 +352,6 @@ internal sealed class Framework : IDisposable, IServiceType, IFramework
         this.frameworkUpdateThread ??= Thread.CurrentThread;
 
         ThreadSafety.MarkMainThread();
-
-        this.BeforeUpdate?.InvokeSafely(this);
 
         this.hitchDetector.Start();
 
