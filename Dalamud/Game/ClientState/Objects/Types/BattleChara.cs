@@ -87,9 +87,6 @@ public unsafe class BattleChara : Character
     {
         if (newAdress == nint.Zero) return;
 
-        Log.Warning("Updating {this} from OnAddressChange to {new}",
-            this.GetType().FullName, newAdress.ToString("X"));
-
         if (this.StatusList == null)
             this.StatusList = new(this.Struct->GetStatusManager);
         else
